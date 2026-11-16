@@ -2,6 +2,8 @@
 
 Cron is the oldest persistence trick in the book and it still works: one line in a crontab and an attacker survives reboots, password changes and half of your cleanup. cron-audit reads crontab files and flags the lines that look like persistence or abuse.
 
+![Terminal demo of cron-audit on its sample data](docs/demo.svg)
+
 **Live demo:** https://jvch0512.github.io/cron-audit/ (a report on the synthetic crontabs in `examples/`)
 
 Nim, standard library only, one static-friendly binary.
